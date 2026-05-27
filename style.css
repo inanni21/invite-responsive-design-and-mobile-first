@@ -1,0 +1,583 @@
+/* ─── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue-vivid:  #2C35F0;
+  --blue-dark:   #1a1fa0;
+  --blue-overlay: rgba(28, 34, 180, 0.72);
+  --blue-overlay-strong: rgba(20, 25, 150, 0.82);
+  --black:       #000000;
+  --white:       #ffffff;
+  --cream:       #F5F3EE;
+  --grey-bg:     #F0EFEC;
+  --text-dark:   #111111;
+  --card-bg:     rgba(200, 210, 255, 0.55);
+
+  --font-body:   'Inter', sans-serif;
+  --font-mono:   'Space Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--black);
+  overflow-x: hidden;
+}
+
+img { display: block; width: 100%; }
+
+a { text-decoration: none; color: inherit; }
+
+/* ─── SECTION BASE ─────────────────────────────────────────── */
+section { width: 100%; }
+
+/* ══════════════════════════════════════════════════════════════
+   1. HERO
+══════════════════════════════════════════════════════════════ */
+#hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  background: #1c22b4;
+}
+
+#hero .hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80');
+  background-size: cover;
+  background-position: center 30%;
+  filter: blur(1px) saturate(0.3);
+  opacity: 0.55;
+}
+
+#hero .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--blue-overlay-strong);
+}
+
+#hero .hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 2.5rem 1.5rem 0;
+  text-align: center;
+}
+
+/* Badge 3º BSI 2026 */
+.badge-bsi {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  margin-bottom: 2.5rem;
+}
+
+/* Main title */
+.hero-title {
+  font-size: clamp(2.4rem, 9vw, 4.5rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+}
+
+.hero-speaker {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 0.75rem;
+}
+
+.hero-date {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+}
+
+/* CTA buttons row */
+.hero-cta {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+}
+
+.btn-inscricao,
+.btn-saber {
+  flex: 1;
+  padding: 1.25rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s;
+  text-align: center;
+}
+
+.btn-inscricao:hover,
+.btn-saber:hover { opacity: 0.88; }
+
+.btn-inscricao {
+  background: var(--blue-vivid);
+  color: var(--white);
+}
+
+.btn-saber {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   2. PALESTRANTE
+══════════════════════════════════════════════════════════════ */
+#palestrante {
+  background: var(--black);
+}
+
+.palestrante-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3.6;
+  overflow: hidden;
+  background: #2030c0;
+}
+
+.palestrante-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: saturate(0.15) brightness(0.85);
+  mix-blend-mode: normal;
+}
+
+.palestrante-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(40, 50, 210, 0.50);
+  mix-blend-mode: multiply;
+}
+
+.palestrante-info {
+  display: flex;
+  width: 100%;
+}
+
+.palestrante-left {
+  flex: 1;
+  background: var(--cream);
+  padding: 1.5rem 1.25rem;
+}
+
+.palestrante-left h2 {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--blue-vivid);
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+
+.palestrante-left p {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-vivid);
+}
+
+.palestrante-right {
+  flex: 1;
+  background: var(--black);
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.palestrante-right span {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--white);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   3. PROGRAMAÇÃO
+══════════════════════════════════════════════════════════════ */
+#programacao {
+  background: var(--grey-bg);
+  padding: 2.5rem 1.25rem 2rem;
+}
+
+#programacao h2 {
+  font-size: clamp(1.9rem, 7vw, 3rem);
+  font-weight: 900;
+  color: var(--blue-vivid);
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+}
+
+#programacao .prog-description {
+  font-size: 0.97rem;
+  line-height: 1.65;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Activity cards stack */
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.activity-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.activity-item img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  filter: brightness(0.92);
+  display: block;
+}
+
+.activity-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: var(--blue-vivid);
+  color: var(--white);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.1rem;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   4. SOBRE O EVENTO
+══════════════════════════════════════════════════════════════ */
+#sobre {
+  position: relative;
+  min-height: 70vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+
+#sobre .sobre-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.2) brightness(0.7);
+}
+
+#sobre .sobre-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 28, 160, 0.78);
+}
+
+#sobre .sobre-content {
+  position: relative;
+  z-index: 2;
+}
+
+#sobre h2 {
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
+.sobre-card {
+  background: rgba(210, 218, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1.25rem;
+  padding: 1.75rem 1.5rem;
+}
+
+.sobre-card p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-dark);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   5. CONTATO / INSCRIÇÃO
+══════════════════════════════════════════════════════════════ */
+#contato {
+  position: relative;
+  min-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#contato .contato-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.1) brightness(0.75);
+}
+
+#contato .contato-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(100, 120, 220, 0.50);
+}
+
+.contato-header {
+  position: relative;
+  z-index: 2;
+  background: var(--blue-vivid);
+  margin: 0 2rem;
+  margin-top: 0;
+  padding: 1rem 1.5rem;
+}
+
+.contato-header h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.contato-body {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 2rem;
+}
+
+.contato-card {
+  background: rgba(160, 180, 240, 0.50);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1.75rem 1.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.contato-item {
+  margin-bottom: 1.5rem;
+}
+
+.contato-item:last-child { margin-bottom: 0; }
+
+.contato-item .label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  margin-bottom: 0.3rem;
+}
+
+.contato-item .value {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text-dark);
+}
+
+.contato-footer {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-inscrever {
+  display: block;
+  width: 100%;
+  padding: 1.4rem 1rem;
+  background: var(--blue-vivid);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-inscrever:hover { opacity: 0.88; }
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE — TABLET / DESKTOP
+══════════════════════════════════════════════════════════════ */
+
+/* ── 600px+ (tablet portrait) ── */
+@media (min-width: 600px) {
+  #hero .hero-content { padding: 3rem 3rem 0; }
+
+  .hero-title { font-size: clamp(3rem, 7vw, 5rem); }
+
+  .btn-inscricao, .btn-saber { font-size: 1.1rem; padding: 1.4rem 1rem; }
+
+  .palestrante-left h2 { font-size: 2rem; }
+  .palestrante-right span { font-size: 1.5rem; }
+
+  #programacao { padding: 3rem 3rem 2.5rem; }
+
+  #sobre { padding: 4rem 3rem; }
+
+  .contato-header { margin: 0 3rem; }
+  .contato-body { padding: 2rem 3rem; }
+}
+
+/* ── 768px+ (tablet landscape) ── */
+@media (min-width: 768px) {
+  .hero-title { font-size: clamp(3.5rem, 6vw, 5.5rem); }
+
+  .palestrante-photo { aspect-ratio: 16/7; }
+
+  .activity-list { flex-direction: row; }
+  .activity-item { flex: 1; }
+  .activity-item img { aspect-ratio: 3/4; }
+
+  #programacao .prog-description { max-width: 680px; margin-left: auto; margin-right: auto; }
+
+  .sobre-card { max-width: 600px; }
+
+  #sobre { min-height: 80vh; }
+}
+
+/* ── 1024px+ (desktop) ── */
+@media (min-width: 1024px) {
+  #hero { min-height: 100vh; }
+
+  #hero .hero-content {
+    padding: 5rem 8rem 2rem;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .badge-bsi { font-size: 1.5rem; margin-bottom: 4rem; }
+
+  .hero-title { font-size: clamp(4rem, 5.5vw, 6rem); max-width: 700px; }
+
+  .hero-cta { max-width: 600px; }
+  .btn-inscricao, .btn-saber { font-size: 1.15rem; }
+
+  /* Palestrante side-by-side */
+  #palestrante { display: flex; }
+
+  .palestrante-photo {
+    flex: 1;
+    aspect-ratio: unset;
+    min-height: 480px;
+  }
+
+  .palestrante-photo img { height: 100%; }
+
+  .palestrante-info {
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .palestrante-left,
+  .palestrante-right {
+    flex: 1;
+    padding: 2.5rem 2.5rem;
+  }
+
+  .palestrante-left h2 { font-size: 2.5rem; }
+  .palestrante-right span { font-size: 1.8rem; }
+
+  /* Programação */
+  #programacao { padding: 4rem 6rem; }
+
+  #programacao h2 { font-size: 3rem; text-align: left; }
+
+  #programacao .prog-description {
+    text-align: left;
+    margin-left: 0;
+    max-width: 760px;
+    font-size: 1.05rem;
+  }
+
+  .activity-item img { aspect-ratio: 4/5; }
+
+  /* Sobre */
+  #sobre { padding: 5rem 6rem; min-height: 75vh; }
+
+  #sobre .sobre-content {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  #sobre h2 { min-width: 260px; font-size: 3.5rem; margin-bottom: 0; }
+
+  .sobre-card { max-width: 620px; }
+
+  /* Contato */
+  #contato { min-height: 70vh; }
+
+  .contato-header { margin: 0 6rem; max-width: 420px; }
+
+  .contato-body {
+    padding: 3rem 6rem;
+    justify-content: center;
+  }
+
+  .contato-card {
+    max-width: 600px;
+    padding: 2.5rem 3rem;
+    display: flex;
+    gap: 2rem;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .contato-item { margin-bottom: 0; flex: 1; }
+}
+
+/* ── 1280px+ (wide desktop) ── */
+@media (min-width: 1280px) {
+  #hero .hero-content { padding: 5rem 10rem 2rem; }
+
+  .hero-title { font-size: 5.5rem; }
+
+  #programacao { padding: 5rem 10rem; }
+
+  #sobre { padding: 6rem 10rem; }
+
+  .contato-header { margin-left: 10rem; }
+  .contato-body { padding: 3rem 10rem; }
+}
